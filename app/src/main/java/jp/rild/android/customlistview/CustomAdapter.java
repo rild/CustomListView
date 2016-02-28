@@ -15,12 +15,9 @@ import java.util.List;
 public class CustomAdapter extends ArrayAdapter<Item> {
     LayoutInflater mInflater;
 
-    public CustomAdapter(Context context, int textViewResourceId) {
-        super(context, textViewResourceId);
-    }
-
     public CustomAdapter(Context context, int resource, List<Item> items) {
         super(context, resource, items);
+        mInflater =  (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -29,7 +26,6 @@ public class CustomAdapter extends ArrayAdapter<Item> {
         final ViewHolder viewHolder;
 
         if (convertView == null) {
-            mInflater = LayoutInflater.from(getContext());
             convertView = mInflater.inflate(R.layout.item_main, null);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
